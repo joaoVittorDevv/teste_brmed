@@ -27,7 +27,6 @@ Este projeto utiliza várias tecnologias-chave:
 
 Antes de começar, certifique-se de que você tenha o Docker instalado em sua máquina. Caso não tenha, siga as instruções abaixo para instalá-lo.
 
-### Instalação do Docker
 
 ## Instalação do Docker
 
@@ -41,7 +40,7 @@ Para instalar o Docker, siga estas etapas:
    docker --version
 
 
-### Docker Compose
+## Docker Compose
 
 Certifique-se de ter o Docker Compose instalado em sua máquina. Você pode encontrar as instruções de instalação adequadas para o seu sistema operacional no [site oficial do Docker Compose](https://docs.docker.com/compose/install/).
 
@@ -79,5 +78,4 @@ Para parar e remover todos os contêineres do Docker Compose, execute:
     
     docker-compose down
     
-# teste_brmed
-# teste_brmed
+  
