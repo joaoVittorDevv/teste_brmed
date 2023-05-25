@@ -1,0 +1,111 @@
+   // Dados fictícios para testar o gráfico
+    var data = [
+      { date: '2023-05-15', usd: 5.0, eur: 4.0, jpy: 300, brl: 10 },
+      { date: '2023-05-16', usd: 4.9, eur: 4.1, jpy: 305, brl: 11 },
+      { date: '2023-05-17', usd: 4.8, eur: 4.2, jpy: 310, brl: 12 },
+      { date: '2023-05-18', usd: 4.7, eur: 4.3, jpy: 315, brl: 13 },
+      { date: '2023-05-19', usd: 4.6, eur: 4.4, jpy: 320, brl: 14 }
+    ];
+
+    // Função para renderizar o gráfico
+    function renderChart() {
+      var startDate = document.getElementById('start-date').value;
+      var endDate = document.getElementById('end-date').value;
+      var currency = document.getElementById('currency').value;
+      var allCurrencies = currency === 'ALL';
+
+      var startDateObj = new Date(startDate);
+      var endDateObj = new Date(endDate);
+      var daysDiff = Math.round((endDateObj - startDateObj) / (1000 * 60 * 60 * 24));
+
+      // Validar datas selecionadas
+      if (endDateObj < startDateObj) {
+        document.getElementById('error-message').textContent = 'A data de fim deve ser maior ou igual à data de início.';
+        return;
+      }
+
+      if (daysDiff > 5) {
+        document.getElementById('error-message').textContent = 'O intervalo máximo permitido é de 5 dias.';
+        return;
+      }
+
+      // Limpar mensagem de erro
+      document.getElementById('error-message').textContent = '';
+
+      // Filtrar os dados com base nas datas selecionadas
+      var filteredData = data.filter(function(item) {
+        return item.date >= startDate && item.date <= endDate;
+      });
+
+      // Preparar os dados para o gráfico
+      var chartData = [];
+      if (allCurrencies) {
+        // Incluir todas as moedas no gráfico
+        Object.keys(filteredData[0]).forEach(function(key) {
+          if (key !== 'date') {
+            var seriesData = filteredData.map(function(item) {
+              return [new Date(item.date).getTime(), item[key]];
+            });
+            chartData.push({ name: key, data: seriesData });
+          }
+        });
+      } else {
+        // Incluir apenas a moeda selecionada no gráfico
+        var seriesData = filteredData.map(function(item) {
+          return [new Date(item.date).getTime(), item[currency.toLowerCase()]];
+        });
+        chartData.push({ name: currency, data: seriesData });
+      }
+
+      // Configuração do gráfico
+      var options = {
+        chart: {
+          renderTo: 'chart-container'
+        },
+        title: {
+          text: 'Cotações de Moedas'
+        },
+        xAxis: {
+          type: 'datetime'
+        },
+        yAxis: {
+          title: {
+            text: 'Taxa de Câmbio'
+          }
+        },
+        series: chartData
+      };
+
+      // Criar o gráfico
+      var chart = new Highcharts.Chart(options);
+
+      // Renderizar a tabela com os dados
+      var tableBody = document.querySelector('#data-table tbody');
+      tableBody.innerHTML = '';
+
+      filteredData.forEach(function(item) {
+        var row = document.createElement('tr');
+        var dateCell = document.createElement('td');
+        dateCell.textContent = item.date;
+        row.appendChild(dateCell);
+
+        Object.keys(item).forEach(function(key) {
+          if (key !== 'date') {
+            var rateCell = document.createElement('td');
+            rateCell.textContent = item[key];
+            row.appendChild(rateCell);
+          }
+        });
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Lidar com o envio do formulário
+    document.getElementById('filter-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Impedir o envio do formulário
+      renderChart(); // Renderizar o gráfico e a tabela com base nos filtros selecionados
+    });
+
+    // Renderizar o gráfico e a tabela inicialmente
+    renderChart();

@@ -1,0 +1,285 @@
+<!--{% load static i18n %}<!DOCTYPE html>-->
+<!--{% get_current_language as LANGUAGE_CODE %}-->
+<!--<html lang="{{ LANGUAGE_CODE }}">-->
+<!--  <head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="x-ua-compatible" content="ie=edge">-->
+<!--    <title>{% block title %}teste_brmed{% endblock title %}</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta name="description" content="Teste pratico de programação para empresa BR Med">-->
+<!--    <meta name="author" content="joaoVittorDevv">-->
+
+<!--    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">-->
+
+<!--    {% block css %}-->
+<!--    &lt;!&ndash; Latest compiled and minified Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
+<!--    &lt;!&ndash; Your stuff: Third-party CSS libraries go here &ndash;&gt;-->
+
+<!--    &lt;!&ndash; This file stores project-specific CSS &ndash;&gt;-->
+<!--    <link href="{% static 'css/project.css' %}" rel="stylesheet">-->
+<!--    {% endblock %}-->
+<!--    &lt;!&ndash; Le javascript-->
+<!--    ================================================== &ndash;&gt;-->
+<!--    {# Placed at the top of the document so pages load faster with defer #}-->
+<!--    {% block javascript %}-->
+<!--      &lt;!&ndash; Bootstrap JS &ndash;&gt;-->
+<!--      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+<!--      &lt;!&ndash; Your stuff: Third-party javascript libraries go here &ndash;&gt;-->
+
+<!--      &lt;!&ndash; place project specific Javascript in this file &ndash;&gt;-->
+<!--      <script defer src="{% static 'js/project.js' %}"></script>-->
+
+<!--    {% endblock javascript %}-->
+
+<!--  </head>-->
+
+<!--  <body>-->
+
+<!--    <div class="mb-1">-->
+<!--      <nav class="navbar navbar-expand-md navbar-light bg-light">-->
+<!--        <div class="container-fluid">-->
+<!--          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--          </button>-->
+<!--          <a class="navbar-brand" href="{% url 'home' %}">teste_brmed</a>-->
+
+<!--          <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav mr-auto">-->
+<!--              <li class="nav-item active">-->
+<!--                <a class="nav-link" href="{% url 'home' %}">Home <span class="visually-hidden">(current)</span></a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="{% url 'about' %}">About</a>-->
+<!--              </li>-->
+<!--              {% if request.user.is_authenticated %}-->
+<!--                <li class="nav-item">-->
+<!--                  <a class="nav-link" href="{% url 'users:detail' request.user.username %}">{% translate "My Profile" %}</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                  {# URL provided by django-allauth/account/urls.py #}-->
+<!--                  <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>-->
+<!--                </li>-->
+<!--              {% else %}-->
+<!--                {% if ACCOUNT_ALLOW_REGISTRATION %}-->
+<!--              <li class="nav-item">-->
+<!--                {# URL provided by django-allauth/account/urls.py #}-->
+<!--                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>-->
+<!--              </li>-->
+<!--              {% endif %}-->
+<!--                <li class="nav-item">-->
+<!--                  {# URL provided by django-allauth/account/urls.py #}-->
+<!--                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>-->
+<!--                </li>-->
+<!--              {% endif %}-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </nav>-->
+
+<!--    </div>-->
+
+<!--    <div class="container">-->
+
+<!--      {% if messages %}-->
+<!--        {% for message in messages %}-->
+<!--          <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">-->
+<!--            {{ message }}-->
+<!--            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--          </div>-->
+<!--        {% endfor %}-->
+<!--      {% endif %}-->
+
+<!--      {% block content %}-->
+<!--        <p>Use this document as a way to quick start any new project.</p>-->
+<!--      {% endblock content %}-->
+
+<!--    </div> &lt;!&ndash; /container &ndash;&gt;-->
+
+<!--    {% block modal %}{% endblock modal %}-->
+
+<!--    {% block inline_javascript %}-->
+<!--    {% comment %}-->
+<!--    Script tags with only code, no src (defer by default). To run-->
+<!--    with a "defer" so that you run inline code:-->
+<!--    <script>-->
+<!--      window.addEventListener('DOMContentLoaded', () => {/* Run whatever you want */});-->
+<!--    </script>-->
+<!--    {% endcomment %}-->
+<!--    {% endblock inline_javascript %}-->
+<!--  </body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--  <title>Cotações de Moedas</title>-->
+<!--  <script src="https://code.highcharts.com/highcharts.js"></script>-->
+<!--  <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+<!--  <script src="https://code.highcharts.com/modules/export-data.js"></script>-->
+<!--  <script src="https://code.highcharts.com/modules/accessibility.js"></script>-->
+<!--  <style>-->
+<!--    table {-->
+<!--      border-collapse: collapse;-->
+<!--      margin-top: 20px;-->
+<!--    }-->
+<!--    table th, table td {-->
+<!--      border: 1px solid #ccc;-->
+<!--      padding: 5px;-->
+<!--      text-align: center;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--  <h1>Cotações de Moedas</h1>-->
+
+<!--  <form id="filter-form">-->
+<!--    <label for="start-date">Data de início:</label>-->
+<!--    <input type="date" id="start-date" name="start-date">-->
+
+<!--    <label for="end-date">Data de fim:</label>-->
+<!--    <input type="date" id="end-date" name="end-date">-->
+
+<!--    <label for="currency">Moeda:</label>-->
+<!--    <select id="currency" name="currency">-->
+<!--      <option value="USD">Dólar</option>-->
+<!--      <option value="EUR">Euro</option>-->
+<!--      <option value="JPY">Iene</option>-->
+<!--      <option value="BRL">Real</option>-->
+<!--      <option value="ALL">Todas as moedas</option>-->
+<!--    </select>-->
+
+<!--    <input type="submit" value="Aplicar">-->
+<!--  </form>-->
+
+<!--  <div id="chart-container"></div>-->
+
+<!--  <table id="data-table">-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th>Data</th>-->
+<!--        <th>Dólar (USD)</th>-->
+<!--        <th>Euro (EUR)</th>-->
+<!--        <th>Iene (JPY)</th>-->
+<!--        <th>Real (BRL)</th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+<!--    <tbody></tbody>-->
+<!--  </table>-->
+
+<!--  <script>-->
+<!--    // Dados fictícios para testar o gráfico-->
+<!--    var data = [-->
+<!--      { date: '2023-05-15', usd: 5.0, eur: 4.0, jpy: 300, brl: 10 },-->
+<!--      { date: '2023-05-16', usd: 4.9, eur: 4.1, jpy: 305, brl: 11 },-->
+<!--      { date: '2023-05-17', usd: 4.8, eur: 4.2, jpy: 310, brl: 12 },-->
+<!--      { date: '2023-05-18', usd: 4.7, eur: 4.3, jpy: 315, brl: 13 },-->
+<!--      { date: '2023-05-19', usd: 4.6, eur: 4.4, jpy: 320, brl: 14 }-->
+<!--    ];-->
+
+<!--    // Função para renderizar o gráfico-->
+<!--    function renderChart() {-->
+<!--      var startDate = document.getElementById('start-date').value;-->
+<!--      var endDate = document.getElementById('end-date').value;-->
+<!--      var currency = document.getElementById('currency').value;-->
+<!--      var allCurrencies = currency === 'ALL';-->
+
+<!--      // Filtrar os dados com base nas datas selecionadas-->
+<!--      var filteredData = data.filter(function(item) {-->
+<!--        return item.date >= startDate && item.date <= endDate;-->
+<!--      });-->
+
+<!--      // Preparar os dados para o gráfico-->
+<!--      var chartData = [];-->
+<!--      if (allCurrencies) {-->
+<!--        // Incluir todas as moedas no gráfico-->
+<!--        Object.keys(filteredData[0]).forEach(function(key) {-->
+<!--          if (key !== 'date') {-->
+<!--            var seriesData = filteredData.map(function(item) {-->
+<!--              return [new Date(item.date).getTime(), item[key]];-->
+<!--            });-->
+<!--            chartData.push({ name: key, data: seriesData });-->
+<!--          }-->
+<!--        });-->
+<!--      } else {-->
+<!--        // Incluir apenas a moeda selecionada no gráfico-->
+<!--        var seriesData = filteredData.map(function(item) {-->
+<!--          return [new Date(item.date).getTime(), item[currency.toLowerCase()]];-->
+<!--        });-->
+<!--        chartData.push({ name: currency, data: seriesData });-->
+<!--      }-->
+
+<!--      // Configuração do gráfico-->
+<!--      var options = {-->
+<!--        chart: {-->
+<!--          renderTo: 'chart-container'-->
+<!--        },-->
+<!--        title: {-->
+<!--          text: 'Cotações de Moedas'-->
+<!--        },-->
+<!--        xAxis: {-->
+<!--          type: 'datetime'-->
+<!--        },-->
+<!--        yAxis: {-->
+<!--          title: {-->
+<!--            text: 'Taxa de Câmbio'-->
+<!--          }-->
+<!--        },-->
+<!--        series: chartData-->
+<!--      };-->
+
+<!--      // Criar o gráfico-->
+<!--      var chart = new Highcharts.Chart(options);-->
+
+<!--      // Renderizar a tabela com os dados-->
+<!--      var tableBody = document.querySelector('#data-table tbody');-->
+<!--      tableBody.innerHTML = '';-->
+
+<!--      filteredData.forEach(function(item) {-->
+<!--        var row = document.createElement('tr');-->
+<!--        var dateCell = document.createElement('td');-->
+<!--        dateCell.textContent = item.date;-->
+<!--        row.appendChild(dateCell);-->
+
+<!--        Object.keys(item).forEach(function(key) {-->
+<!--          if (key !== 'date') {-->
+<!--            var rateCell = document.createElement('td');-->
+<!--            rateCell.textContent = item[key];-->
+<!--            row.appendChild(rateCell);-->
+<!--          }-->
+<!--        });-->
+
+<!--        tableBody.appendChild(row);-->
+<!--      });-->
+<!--    }-->
+
+<!--    // Lidar com o envio do formulário-->
+<!--    document.getElementById('filter-form').addEventListener('submit', function(e) {-->
+<!--      e.preventDefault(); // Impedir o envio do formulário-->
+<!--      renderChart(); // Renderizar o gráfico e a tabela com base nos filtros selecionados-->
+<!--    });-->
+
+<!--    // Renderizar o gráfico e a tabela inicialmente-->
+<!--    renderChart();-->
+<!--  </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
